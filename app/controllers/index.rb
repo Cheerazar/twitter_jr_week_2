@@ -3,12 +3,7 @@ get '/' do
   erb :index
 end
 
-#lets user login
-post '/profile' do
-  @user = User.where(username: params[:username], password: params[:password] ).first
-  p @user  # be sure to take a look at where
-  redirect "/profile/#{@user.id}"
-end
+
 
 #users profile page
 get '/profiles/:id' do
@@ -30,7 +25,16 @@ post '/signup' do
               last_name: params[:last_name],
               email: params[:email]
               )
+  session[:user] = @user.id
 
+  redirect "/profiles/#{@user.id}"
+end
+
+#lets user login
+post '/profiles' do
+  @user = User.where(username: params[:username], password: params[:password] ).first
+  p @user  # be sure to take a look at where
+  session[:user] = @user.id  # may have to be a password
   redirect "/profiles/#{@user.id}"
 end
 
@@ -52,6 +56,12 @@ delete '/profiles/:id/delete' do
   @user = User.find(params[:id])
   @user.destroy
   redirect '/'
+end
+
+
+post '/maketweet' do
+  tweet1 = Tweet.create(:tweet = params[:tweet])
+
 end
 
 
