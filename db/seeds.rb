@@ -12,10 +12,18 @@ require 'faker'
 #Seed Tweets
 1000.times{
   Tweet.create(body: Faker::Lorem.paragraph,
-               user_id: rand(1..100))
+   user_id: rand(1..100))
 }
 
 #Seed Followers
 
-
+100.times{
+  user_id = 0
+  follower_id = 0
+  until user_id != follower_id
+    user_id = rand(1..100)
+    follower_id = rand(1..100)
+  end
+  Following.create(user_id: user_id, follower_id: follower_id)
+}
 
