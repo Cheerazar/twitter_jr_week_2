@@ -1,3 +1,5 @@
 class User < ActiveRecord::Base
-  # Remember to create a migration!
+  has_many :tweets
+  has_many :followings
+  has_many :followers, through: :followings
 end
