@@ -1,0 +1,15 @@
+  <form action="/profiles/<%= @user.id %>/edit" method="post">
+    <input type="hidden" name="_method" value="put" >
+    <input type="text" name="first_name" value="<%= @user.first_name %>"><br>
+    <input type="text" name="last_name" value="<%= @user.last_name %>"><br>
+    <input type="text" name="username" value="<%= @user.username %>"><br>
+    <input type="text" name="password" value="<%= @user.password %>"><br>
+    <input type="text" name="email" value="<%= @user.email%>">
+    <input type="submit" value="edit profile">
+  </form>
+  <br>
+
+    <form action="/profiles/<%= @user.id %>/delete" method="post">
+    <input type="hidden" name="_method" value="delete" >
+    <input type="submit" value="delete your profile">
+  </form>
