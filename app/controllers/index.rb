@@ -7,8 +7,12 @@ end
 get '/' do
   @user = session[:user].nil? ? nil : User.find(session[:user].to_i)
   @users_we_follow = Following.followee(@user)
-  @users_we_follow.map! do |user_we_follow|
-    User.find(user_we_follow.user_id)
+  if @users_we_follow.nil?
+    @users_we_follow = []
+  else
+    @users_we_follow.map! do |user_we_follow|
+      User.find(user_we_follow.user_id)
+    end
   end
   erb :index
 end
