@@ -1,4 +1,5 @@
 <h1>Welcome <%= @user.username %></h1>
+  <a href="/"><p>Twitter Jr!</p></a>
 <br>
 <a href="/profiles/<%=@user.id%>/edit">Click here to edit your profile</a>
 <br>
@@ -15,3 +16,22 @@
     <input type="hidden" name="following_id" value="<%= @user.id %>">
     <input type="submit" value="follow">
   </form>
+  <br>
+<h2>here are your followers</h2>
+<ul>
+<% @user.followers.each do |follower| %>
+<li><a href="/profiles/<%=follower.id%>"><%= follower.username %></a></li>
+<% end %>
+</ul>
+
+<h2>here are people following you</h2>
+<ul>
+<% @user.followings.each do |following|%>
+<% following.followee(@user).each do |followee| %>
+
+<li><a href="/profiles/<%=followee.id%>"><%= followee.username %></a></li>
+<% end %>
+<% end %>
+</ul>
+
+
