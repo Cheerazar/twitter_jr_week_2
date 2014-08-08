@@ -4,9 +4,7 @@ class Following < ActiveRecord::Base
 
   # finds
   def self.followee(user)
-    Following.where(follower_id: user.id).to_a#.select do |follower_following|
-      # follower_following.follower_id == user.id
-    # end
+    Following.where(follower_id: user.id).to_a unless user.nil?
   end
 
 
