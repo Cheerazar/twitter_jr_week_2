@@ -1,16 +1,27 @@
 body{
   background: url("../images/square_bg.png");
-  border: 1px dashed black;
+  border: 2px solid black;
   margin:50px auto;
   padding:20px;
   text-align:center;
   width:50%;
-  height: 700px ;
+  height: 100% ;
   color:  #003300;
 }
-input[type="submit"]:hover {
-  background-color: #DCDCDC;
+
+
+#homepage_img{
+  position: relative;
+
+  /*margin:20px;*/
+  width: 100%;
+  height: 60% ;
 }
+input[type="submit"]:hover {
+  background-color:#CAB9A7;
+}
+
+
 
 button:hover {
   background-color: #000000;
@@ -29,15 +40,59 @@ color: #4D4D4D;
 }
 
 .sign_in{
-  color: blue;
+  color: green;
   margin:10px;
   padding:10px;
-  background-color : #E0E7E0;
+  background-color : #DACEC1;
   text-align:center;
+}
 
 ul{
   list-style-type: none;
 }
+
+::-webkit-input-placeholder {
+   color: #335C33;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #335C33;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #335C33;
+}
+
+:-ms-input-placeholder {
+   color: #335C33;
+}
+
+.landing_page {
+  position: fixed;
+  top: 9%;
+  left: 10%;
+}
+.logout_button {
+  position: fixed;
+  top: 10%;
+  right: 15%;
+}
+.name{
+  position: fixed;
+  top: 12%;
+  left: 15%;
+
+}
+
+.follow{
+  position: fixed;
+  top: 17%;
+  left: 10%;
+
+}
+
+
+
 /*
 .tweet {
 
