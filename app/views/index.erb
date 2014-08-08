@@ -11,19 +11,18 @@
       <input type="submit" value="login">
     </form>
     <br>
+
     <a href="/signup"><button>Signup</button></a>
 
   <% else %>
     <h2>Hello <a href="/profiles/<%=@user.id %>"><%= @user.first_name %></a></h2>
-
-
-  <ul>
-  <% @users_we_follow.each do |other_user| %>
-  <% other_user.tweets.each do |tweet| %>
-    <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
-<% end %>
-
-<% end %>
+    <ul>
+      <% @users_we_follow.each do |other_user| %>
+        <% other_user.tweets.each do |tweet| %>
+          <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
+        <% end %>
+      <% end %>
+    </ul>
 
 <form action="/logout" method="post">
 <input type="submit" value="logout <%= @user.username %>">
