@@ -14,4 +14,11 @@
   <% else %>
     <h2><a href="/profiles/<%=@user.id %>"><%= @user.first_name %></a></h2>
   <% end %>
+
+  <ul>
+  <% @users_we_follow.each do |other_user| %>
+  <% other_user.tweets.each do |tweet| %>
+    <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
+<% end %>
+<% end %>
 </div>
