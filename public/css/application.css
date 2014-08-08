@@ -28,6 +28,9 @@ text-decoration: underline;
 color: #4D4D4D;
 }
 
+ul{
+  list-style-type: none;
+}
 /*
 .tweet {
 
