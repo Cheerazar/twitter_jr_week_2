@@ -6,6 +6,4 @@ class Following < ActiveRecord::Base
   def self.followee(user)
     Following.where(follower_id: user.id).to_a unless user.nil?
   end
-
-
 end

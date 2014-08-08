@@ -17,8 +17,6 @@ get '/' do
   erb :index
 end
 
-
-
 #users profile page
 get '/profiles/:id' do
   @user = User.find(params[:id])
@@ -38,18 +36,23 @@ get '/signup' do
   erb :signup
 end
 
-
 #creates user login data
 post '/signup' do
-  @user = User.create(username: params[:username],
-              password: params[:password],
-              first_name: params[:first_name],
-              last_name: params[:last_name],
-              email: params[:email]
-              )
-  session[:user] = @user.id
+  @user = User.new(username: params[:username],
+                password: params[:password],
+                first_name: params[:first_name],
+                last_name: params[:last_name],
+                email: params[:email]
+                )
+  if @user.valid?
+    @user.save
+    session[:user] = @user.id
+    redirect "/profiles/#{@user.id}"
+  else
+    session[:failed_user] = @user
+    redirect '/signup?validation_failure=true'
+  end
 
-  redirect "/profiles/#{@user.id}"
 end
 
 #lets user login
@@ -92,7 +95,6 @@ post '/maketweets' do
   redirect "/profiles/#{user.id}"
 end
 
-
 #display tweets
 get '/tweets/:id' do
   @tweet = Tweet.find(params[:id])
@@ -112,4 +114,3 @@ post '/logout' do
   session[:user] = nil
   redirect '/'
 end
-
