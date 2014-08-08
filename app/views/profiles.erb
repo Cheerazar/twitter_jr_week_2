@@ -1,0 +1,11 @@
+<h1>Welcome <%= @user.username %></h1>
+<br>
+<a href="/profiles/<%=@user.id%>/edit">Click here to edit your profile</a>
+<br>
+<form action="/maketweets" method="post">
+    <input type="text" name="body" placeholder="tweet" >
+    <input type="submit" value="Tweet!">
+  </form>
+<% @user.tweets.each do |tweet| %>
+<p> <%= tweet.body  %></p>
+<% end %>
