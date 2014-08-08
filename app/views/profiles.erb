@@ -17,17 +17,17 @@
     <input type="submit" value="follow">
   </form>
   <br>
-<h2>here are your followers</h2>
+<div>here are your followers</div>
 <ul>
   <% @user.followers.each do |follower| %>
-    <li><a href="/profiles/<%=follower.id%>"><%= follower.username %></a></li>
+    <li><div class="followers"><a href="/profiles/<%=follower.id%>"><%= follower.username %></a></div></li>
   <% end %>
 </ul>
 
-<h2>here are people you follow</h2>
+<div>here are people you follow</div>
 <ul>
   <% @users_we_follow.each do |other_user| %>
-    <li><a href="/profiles/<%= other_user.id %>"><%= other_user.username %></a></li>
+    <li><div class="followers"><a href="/profiles/<%= other_user.id %>"><%= other_user.username %></a></div></li>
   <% end %>
 </ul>
 

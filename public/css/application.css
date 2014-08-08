@@ -12,5 +12,29 @@ body{
 
 a{
   text-decoration: none;
-  color: #003300;
+  color: #808080;
 }
+a:hover
+{
+text-decoration: underline;
+color: #4D4D4D;
+}
+
+/*
+.tweet {
+
+}
+
+.followers {
+
+  color: transparent;
+
+}
+.follow:hover {
+
+  color: black;
+
+
+}
+*/
+
