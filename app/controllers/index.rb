@@ -94,11 +94,6 @@ post '/followings' do
   @following = User.find(params[:following_id])
   @following.followers << @user
   @following.save
-  # def followee
-    #   Following.where(user_id: @following.id).select do |followers_followings|
-    #     followers_followings.follower_id == @user.id
-    #   end
-  # end
   redirect "/profiles/#{@following.id}"
 end
 
