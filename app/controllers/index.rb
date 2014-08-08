@@ -33,7 +33,6 @@ end
 
 #sends user to signup page
 get '/signup' do
-  p "validation_failure: #{params[:validation_failure]}"
   erb :signup
 end
 
@@ -50,6 +49,7 @@ post '/signup' do
     session[:user] = @user.id
     redirect "/profiles/#{@user.id}"
   else
+    session[:failed_user] = @user
     redirect '/signup?validation_failure=true'
   end
 
