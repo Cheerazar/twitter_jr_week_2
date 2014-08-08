@@ -5,7 +5,7 @@ end
 
 #landing page
 get '/' do
-  @user = User.find(session[:user].to_i)
+  @user = session[:user].nil? ? nil : User.find(session[:user].to_i)
   erb :index
 end
 
