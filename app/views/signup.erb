@@ -1,11 +1,18 @@
+<div>
+  <h1>Sign Up For Twitter Jr.</h1>
+  <form action="/signup" method="post">
+    <input class="sign_in" type="text" name="first_name" placeholder="First Name"><br>
+    <input class="sign_in" type="text" name="last_name" placeholder="Last Name"><br>
+    <input class="sign_in" type="text" name="username" placeholder="Username"><br>
+    <input class="sign_in" type="text" name="password" placeholder="Password"><br>
+    <input class="sign_in" type="text" name="email" placeholder="Email"><br>
+    <input class="sign_in" type="submit" name="create profile">
+  </form>
 
-<h1>Sign Up For Twitter Jr.</h1>
-<form action="/signup" method="post">
-  <input class="sign_in" type="text" name="first_name" placeholder="First Name"><br>
-  <input class="sign_in" type="text" name="last_name" placeholder="Last Name"><br>
-  <input class="sign_in" type="text" name="username" placeholder="Username"><br>
-  <input class="sign_in" type="text" name="password" placeholder="Password"><br>
-  <input class="sign_in" type="text" name="email" placeholder="Email"><br>
-  <input class="sign_in" type="submit" name="create profile">
-</form>
-
+  <% if params[:validation_failure] %>
+    <% session[:failed_user].errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+    <% session[:failed_user] = nil %>
+  <% end %>
+</div>

@@ -1,21 +1,42 @@
-<h1>Welcome <%= @user.username %></h1>
+<form action="/logout" method="post">
+<input type="submit" value="logout <%= User.find(session[:user].to_i).username %>">
+</form>
+
+<% unless session[:user].to_i == @user.id %>
+   <form action="/followings" method="post">
+    <input type="hidden" name="following_id" value="<%= @user.id %>">
+    <input type="submit" value="follow <%= @user.username %>">
+  </form>
+<% end %>
+  <h1><%= @user.username %></h1>
   <a href="/"><p>Twitter Jr!</p></a>
 <br>
+
+
+
+<% if session[:user].to_i == @user.id  %>
 <a href="/profiles/<%=@user.id%>/edit">Click here to edit your profile</a>
 <br>
 <form action="/maketweets" method="post">
     <input type="text" name="body" placeholder="tweet" >
     <input type="submit" value="Tweet!">
   </form>
+
+<h2><%= @user.first_name %> <%= @user.last_name %></h2>
+
+
+<% end %>
+
+
+
+
+
 <% @user.tweets.each do |tweet| %>
   <p> <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
 <% end %>
 
 
- <form action="/followings" method="post">
-    <input type="hidden" name="following_id" value="<%= @user.id %>">
-    <input type="submit" value="follow">
-  </form>
+
   <br>
 <div>here are your followers</div>
 <ul>
@@ -31,8 +52,5 @@
   <% end %>
 </ul>
 
-<form action="/logout" method="post">
-<input type="submit" value="logout <%= @user.username %>">
-</form>
 
 

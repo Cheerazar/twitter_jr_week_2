@@ -35,6 +35,8 @@ color: #4D4D4D;
   background-color : #E0E7E0;
   text-align:center;
 
+ul{
+  list-style-type: none;
 }
 /*
 .tweet {
