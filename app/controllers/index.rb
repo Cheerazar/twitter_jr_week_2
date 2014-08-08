@@ -14,6 +14,10 @@ end
 #users profile page
 get '/profiles/:id' do
   @user = User.find(params[:id])
+  @users_we_follow = Following.followee(@user)
+  @users_we_follow.map! do |user_we_follow|
+    User.find(user_we_follow.user_id)
+  end
   erb :profiles
 end
 
