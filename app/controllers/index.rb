@@ -1,3 +1,8 @@
+configure do
+  enable :sessions
+  set :session_secret, "My session secret"
+end
+
 #landing page
 get '/' do
   erb :index
@@ -8,7 +13,7 @@ end
 #users profile page
 get '/profiles/:id' do
   @user = User.find(params[:id])
-  erb :profile
+  erb :profiles
 end
 
 #sends user to signup page
@@ -59,9 +64,12 @@ delete '/profiles/:id/delete' do
 end
 
 
-post '/maketweet' do
-  tweet1 = Tweet.create(:tweet = params[:tweet])
+post '/maketweets' do
+  tweet1 = Tweet.create( body: params[:body])
 
+  user = User.find(session[:user].to_i)
+  user.tweets << tweet1
+  redirect "/profiles/#{user.id}"
 end
 
 
