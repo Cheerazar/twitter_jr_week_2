@@ -17,8 +17,6 @@ get '/' do
   erb :index
 end
 
-
-
 #users profile page
 get '/profiles/:id' do
   @user = User.find(params[:id])
@@ -92,7 +90,6 @@ post '/maketweets' do
   redirect "/profiles/#{user.id}"
 end
 
-
 #display tweets
 get '/tweets/:id' do
   @tweet = Tweet.find(params[:id])
@@ -112,4 +109,3 @@ post '/logout' do
   session[:user] = nil
   redirect '/'
 end
-
