@@ -1,12 +1,12 @@
-<div class="container">
-  <h1>Create a new Twitter Jr. Account</h1>
+<div>
+  <h1>Sign Up For Twitter Jr.</h1>
   <form action="/signup" method="post">
-    <input type="text" name="first_name" placeholder="First Name"><br>
-    <input type="text" name="last_name" placeholder="Last Name"><br>
-    <input type="text" name="username" placeholder="Username"><br>
-    <input type="text" name="password" placeholder="Password"><br>
-    <input type="text" name="email" placeholder="Email">
-    <input type="submit" name="create profile">
+    <input class="sign_in" type="text" name="first_name" placeholder="First Name"><br>
+    <input class="sign_in" type="text" name="last_name" placeholder="Last Name"><br>
+    <input class="sign_in" type="text" name="username" placeholder="Username"><br>
+    <input class="sign_in" type="text" name="password" placeholder="Password"><br>
+    <input class="sign_in" type="text" name="email" placeholder="Email"><br>
+    <input class="sign_in" type="submit" name="create profile">
   </form>
 
   <% if params[:validation_failure] %>
