@@ -8,7 +8,7 @@
     <input type="submit" value="Tweet!">
   </form>
 <% @user.tweets.each do |tweet| %>
-<p> <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
+  <p> <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
 <% end %>
 
 
@@ -19,19 +19,16 @@
   <br>
 <h2>here are your followers</h2>
 <ul>
-<% @user.followers.each do |follower| %>
-<li><a href="/profiles/<%=follower.id%>"><%= follower.username %></a></li>
-<% end %>
+  <% @user.followers.each do |follower| %>
+    <li><a href="/profiles/<%=follower.id%>"><%= follower.username %></a></li>
+  <% end %>
 </ul>
 
-<h2>here are people following you</h2>
+<h2>here are people you follow</h2>
 <ul>
-<% @user.followings.each do |following|%>
-<% following.followee(@user).each do |followee| %>
-
-<li><a href="/profiles/<%=followee.id%>"><%= followee.username %></a></li>
-<% end %>
-<% end %>
+  <% @users_we_follow.each do |other_user| %>
+    <li><a href="/profiles/<%= other_user.id %>"><%= other_user.username %></a></li>
+  <% end %>
 </ul>
 
 
