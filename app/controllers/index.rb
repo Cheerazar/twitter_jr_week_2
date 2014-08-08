@@ -7,8 +7,12 @@ end
 get '/' do
   @user = session[:user].nil? ? nil : User.find(session[:user].to_i)
   @users_we_follow = Following.followee(@user)
-  @users_we_follow.map! do |user_we_follow|
-    User.find(user_we_follow.user_id)
+  if @users_we_follow.nil?
+    @users_we_follow =[]
+  else
+    @users_we_follow.map! do |user_we_follow|
+      User.find(user_we_follow.user_id)
+    end
   end
   erb :index
 end
@@ -19,8 +23,12 @@ end
 get '/profiles/:id' do
   @user = User.find(params[:id])
   @users_we_follow = Following.followee(@user)
-  @users_we_follow.map! do |user_we_follow|
-    User.find(user_we_follow.user_id)
+  if @users_we_follow.nil?
+    @users_we_follow =[]
+  else
+    @users_we_follow.map! do |user_we_follow|
+      User.find(user_we_follow.user_id)
+    end
   end
   erb :profiles
 end
@@ -47,9 +55,12 @@ end
 #lets user login
 post '/profiles' do
   @user = User.where(username: params[:username], password: params[:password] ).first
-  p @user  # be sure to take a look at where
-  session[:user] = @user.id  # may have to be a password
-  redirect "/profiles/#{@user.id}"
+  if @user.nil?
+    redirect '/'
+  else
+    session[:user] = @user.id  # may have to be a password
+    redirect "/profiles/#{@user.id}"
+  end
 end
 
 #goes to an editing page
@@ -94,13 +105,11 @@ post '/followings' do
   @following = User.find(params[:following_id])
   @following.followers << @user
   @following.save
-  # def followee
-    #   Following.where(user_id: @following.id).select do |followers_followings|
-    #     followers_followings.follower_id == @user.id
-    #   end
-  # end
   redirect "/profiles/#{@following.id}"
 end
 
-
+post '/logout' do
+  session[:user] = nil
+  redirect '/'
+end
 
