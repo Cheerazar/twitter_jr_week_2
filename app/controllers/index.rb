@@ -72,6 +72,10 @@ post '/maketweets' do
   redirect "/profiles/#{user.id}"
 end
 
+get '/tweets/:id' do
+  @tweet = Tweet.find(params[:id])
+  erb :tweets
+end
 
 
 
