@@ -1,20 +1,17 @@
 <div class="container">
   <h1>Welcome to twitter jr! </h1>
-  <h2><a href="/profiles/<%=@user.id %>"><%= @user.first_name %></a></h2>
+  <% if @user.nil? %>
 
+    <!-- lets user login -->
+    <form action="/profiles" method="post">
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" value="login">
+    </form>
 
-  <!-- lets user login -->
-  <form action="/profiles" method="post">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="login">
-  </form>
+    <a href="/signup"><button>Signup</button></a>
 
-  <a href="/signup"><button>Signup</button></a>
-
-
-
-
-
-
+  <% else %>
+    <h2><a href="/profiles/<%=@user.id %>"><%= @user.first_name %></a></h2>
+  <% end %>
 </div>
