@@ -3,10 +3,10 @@ class Following < ActiveRecord::Base
   belongs_to :follower, class_name: 'User'
 
   # finds
-  def followee(user)
-    Following.where(user_id: self.id).select do |followers_followings|
-      followers_followings.follower_id == user.id
-    end
+  def self.followee(user)
+    Following.where(follower_id: user.id).to_a#.select do |follower_following|
+      # follower_following.follower_id == user.id
+    # end
   end
 
 
