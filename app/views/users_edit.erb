@@ -9,7 +9,7 @@
   </form>
   <br>
 
-    <form action="/profiles/<%= @user.id %>/delete" method="post">
+    <form action="/profiles/<%=@user.id%>/delete" method="post">
     <input type="hidden" name="_method" value="delete" >
     <input type="submit" value="delete your profile">
   </form>

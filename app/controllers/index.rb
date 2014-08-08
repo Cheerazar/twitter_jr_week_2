@@ -63,7 +63,7 @@ delete '/profiles/:id/delete' do
   redirect '/'
 end
 
-
+### form to create tweets
 post '/maketweets' do
   tweet1 = Tweet.create( body: params[:body])
 
@@ -72,9 +72,19 @@ post '/maketweets' do
   redirect "/profiles/#{user.id}"
 end
 
+
+#display tweets
 get '/tweets/:id' do
   @tweet = Tweet.find(params[:id])
   erb :tweets
+end
+
+post '/followings' do
+  @user = User.find(session[:user].to_i)  #user who is logged in
+  @following = User.find(params[:following_id])
+  @following.followers << @user
+  @following.save
+  redirect "/profiles/#{@following.id}"
 end
 
 

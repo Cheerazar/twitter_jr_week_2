@@ -9,3 +9,9 @@
 <% @user.tweets.each do |tweet| %>
 <p> <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
 <% end %>
+
+
+ <form action="/followings" method="post">
+    <input type="hidden" name="following_id" value="<%= @user.id %>">
+    <input type="submit" value="follow">
+  </form>
