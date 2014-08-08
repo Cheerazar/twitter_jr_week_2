@@ -4,16 +4,24 @@ body{
   margin:50px auto;
   padding:20px;
   text-align:center;
-  width:40%;
-  height: 700px ;
+  width:90%;
+  height: 90% ;
   color:  #003300;
 }
+input[type="submit"]:hover {
+  background-color: #DCDCDC;
+}
 
+button:hover {
+  background-color: #000000;
+  color: #F6F6F6;
+}
 
 a{
   text-decoration: none;
   color: #808080;
 }
+
 a:hover
 {
 text-decoration: underline;
@@ -37,4 +45,3 @@ color: #4D4D4D;
 
 }
 */
-
