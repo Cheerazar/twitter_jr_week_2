@@ -2,11 +2,12 @@
 <input type="submit" value="logout <%= User.find(session[:user].to_i).username %>">
 </form>
 
- <form action="/followings" method="post">
+<% unless session[:user].to_i == @user.id %>
+   <form action="/followings" method="post">
     <input type="hidden" name="following_id" value="<%= @user.id %>">
     <input type="submit" value="follow <%= @user.username %>">
   </form>
-
+<% end %>
   <h1><%= @user.username %></h1>
   <a href="/"><p>Twitter Jr!</p></a>
 <br>
