@@ -33,21 +33,26 @@ end
 
 #sends user to signup page
 get '/signup' do
+  p "validation_failure: #{params[:validation_failure]}"
   erb :signup
 end
 
-
 #creates user login data
 post '/signup' do
-  @user = User.create(username: params[:username],
-              password: params[:password],
-              first_name: params[:first_name],
-              last_name: params[:last_name],
-              email: params[:email]
-              )
-  session[:user] = @user.id
+  @user = User.new(username: params[:username],
+                password: params[:password],
+                first_name: params[:first_name],
+                last_name: params[:last_name],
+                email: params[:email]
+                )
+  if @user.valid?
+    @user.save
+    session[:user] = @user.id
+    redirect "/profiles/#{@user.id}"
+  else
+    redirect '/signup?validation_failure=true'
+  end
 
-  redirect "/profiles/#{@user.id}"
 end
 
 #lets user login
