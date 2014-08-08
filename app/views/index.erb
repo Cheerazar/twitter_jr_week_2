@@ -1,13 +1,16 @@
-<div class="container">
+
   <h1>Welcome to twitter jr! </h1>
+
+  <div class="container">
   <% if @user.nil? %>
 
-  <!-- lets user login -->
-  <form action="/profiles" method="post">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="login">
-  </form>
+    <!-- lets user login -->
+    <form action="/profiles" method="post">
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" value="login">
+    </form>
+    <br>
 
     <a href="/signup"><button>Signup</button></a>
 
@@ -15,14 +18,23 @@
     <h2>Hello <a href="/profiles/<%=@user.id %>"><%= @user.first_name %></a></h2>
     <ul>
       <% @users_we_follow.each do |other_user| %>
-      <% other_user.tweets.each do |tweet| %>
-      <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
-      <% end %>
-
+        <% other_user.tweets.each do |tweet| %>
+          <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
+        <% end %>
       <% end %>
     </ul>
+
+  <ul>
+  <% @users_we_follow.each do |other_user| %>
+  <% other_user.tweets.each do |tweet| %>
+    <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
+<% end %>
+
+<% end %>
+
 <form action="/logout" method="post">
 <input type="submit" value="logout <%= @user.username %>">
 </form>
+
 <% end %>
 </div>
