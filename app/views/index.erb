@@ -24,14 +24,6 @@
       <% end %>
     </ul>
 
-  <ul>
-  <% @users_we_follow.each do |other_user| %>
-  <% other_user.tweets.each do |tweet| %>
-    <p><a href="/profiles/<%= other_user.id %>"><%= other_user.username %> : <a href="/tweets/<%= tweet.id %>"><%= tweet.body  %></a></p>
-<% end %>
-
-<% end %>
-
 <form action="/logout" method="post">
 <input type="submit" value="logout <%= @user.username %>">
 </form>
